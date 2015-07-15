@@ -64,47 +64,38 @@ include_once("config.php");
     <div class="header-image">
     </div>
     <hr class="header-hr"/>
-  <div class="container">
-    <h3 class="text-center">Products</h3>
-    <hr class="seperator"/>
-    <div class="row">
-      <div class="col-md-4 text-center">
-    <?php
-    // current URL of he page. cart_update.php redirects back to this URL
-    $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-    
+    <div class="container">
+      <h3 class="text-center">Products</h3>
+      <hr class="seperator"/>
+      <div class="row"><?php
+        // current URL of he page. cart_update.php redirects back to this URL
+        $current_url = base64_encode("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
         $results = $mysqli->query("SELECT * FROM products ORDER BY id ASC");
         if ($results) {
             // outputs results from database
-            while($obj = $results->fetch_object())
-            { ?>
-               <div class="product">
-                <form method="post" action="cart_update.php">
-                <div class="product-thumb"><img src="images/<?php echo $obj->product_img_name ?>" class="img-responsive"></div>
-                <div class="product-content"><h3><?php echo $obj->product_name ?></h3></div>
-                <div class="product-desc"><?php echo $obj->product_desc ?></div>
-                <div class="product-info">
-			          Price <?php echo $currency.$obj->price ?> | 
-                Qty <select name="product_qty">
-                            <option name="product_qty" value="1">1</option>
-                            <option name="product_qty" value="2">2</option>
-                            <option name="product_qty" value="3">3</option>
-                            <option name="product_qty" value="4">4</option>
-                          </select>
-			          <button class="add_to_cart">Add To Cart</button>
-			          </div></div>
-                <input type="hidden" name="product_code" value="<?php echo $obj->product_code ?>" />
-                <input type="hidden" name="type" value="add" />
-                <input type="hidden" name="return_url" value="<?php echo $current_url ?>" />
-                </form>
-        </div>
-           <?php }
-        }
-    
-    
-    
-    ?>
-     </div>
+            while($obj = $results->fetch_object()){ ?>
+               
+                <form method="post" action="cart_update.php" class="col-md-4 product text-center">
+                  <div class="product-thumb"><img src="images/<?php echo $obj->product_img_name ?>" class="img-responsive"></div>
+                  <div class="product-content"><h3><?php echo $obj->product_name ?></h3></div>
+                  <div class="product-desc"><?php echo $obj->product_desc ?></div>
+                  <div class="product-info">
+      		          Price <?php echo $currency.$obj->price ?> | 
+                    Qty <select name="product_qty">
+                                <option name="product_qty" value="1">1</option>
+                                <option name="product_qty" value="2">2</option>
+                                <option name="product_qty" value="3">3</option>
+                                <option name="product_qty" value="4">4</option>
+                              </select>
+      		          <button class="add_to_cart">Add To Cart</button>
+    		          </div>
+                  <input type="hidden" name="product_code" value="<?php echo $obj->product_code ?>" />
+                  <input type="hidden" name="type" value="add" />
+                  <input type="hidden" name="return_url" value="<?php echo $current_url ?>" />
+                </form><?php 
+            }
+        } ?>
+      </div>
     </div>
     <!--
     <div class="col-xs-12 col-md-4 product">

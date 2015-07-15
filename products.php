@@ -82,8 +82,16 @@ include_once("config.php");
                 echo '<div class="product-thumb"><img src="images/'.$obj->product_img_name.'" class="img-responsive"></div>';
                 echo '<div class="product-content"><h3>'.$obj->product_name.'</h3>';
                 echo '<div class="product-desc">'.$obj->product_desc.'</div>';
-                echo '<div class="product-info">Price '.$currency.$obj->price.' <button class="add_to_cart btn btn-success">Add to Cart <i class="fa fa-cart-plus"></i></button></div>';
-                echo '</div>';
+                echo '<div class="product-info">';
+			          echo 'Price '.$currency.$obj->price.' | ';
+                echo 'Qty <select name="product_qty">
+                            <option name="product_qty" value="1">1</option>
+                            <option name="product_qty" value="2">2</option>
+                            <option name="product_qty" value="3">3</option>
+                            <option name="product_qty" value="4">4</option>
+                          </select>';
+			          echo '<button class="add_to_cart">Add To Cart</button>';
+			          echo '</div></div>';
                 echo '<input type="hidden" name="product_code" value="'.$obj->product_code.'" />';
                 echo '<input type="hidden" name="type" value="add" />';
                 echo '<input type="hidden" name="return_url" value="'.$current_url.'" />';

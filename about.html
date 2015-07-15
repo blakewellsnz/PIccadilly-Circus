@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+  <title>Piccadilly Circus</title>
+  <!-- My css -->
+  <link rel="stylesheet" href="css/main.css"/>
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+
+<!-- google maps api is below -->
+  <script src="http://maps.googleapis.com/maps/api/js"></script>
+  <script>
+  function initialize() {
+    var mapProp = {
+      center:new google.maps.LatLng(51.508742,-0.120850),
+      zoom:5,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+<!-- -->
+
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="images/logo.jpg" class="img-responsive logo">
+        </a>
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
+            <i class="fa fa-bars fa-2x"></i>
+          </button>
+          <div class="collapse navbar-collapse navHeaderCollapse nav">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="nav-item"><a href="index.html">Home</a></li>
+              <li class="nav-item"><a href="products.php">Products</a></li>
+              <li class="nav-item"><a href="about.html">About</a></li>
+              <li class="nav-item"><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="hidden-xs">
+            <br/>
+            <p class="pull-right">Your Cart <a href="#">(0 items, $0.00)</a></p>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+    <hr class="header-hr"/>
+    <div class="header-image">
+    </div>
+    <hr class="header-hr"/>
+  <div class="container">
+    <h3 class="text-center">About Us</h3>
+    <hr class="seperator"/>
+    <div class="col-xs-12 col-md-8">
+      <p class="body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget consequat enim. Maecenas augue ex,
+        consequat eu massa quis, dictum porta ligula. Vestibulum libero ligula, luctus sed dolor non, dictum efficitur
+         nisl. Etiam sit amet tempor ligula, accumsan auctor turpis. Nullam pulvinar metus luctus diam pellentesque,
+         at bibendum metus aliquet. Aliquam erat volutpat. Proin auctor risus nec ante auctor varius. Praesent id lectus
+         vel sapien commodo euismod nec a ex. Quisque posuere erat nibh, sit amet pellentesque nisi dapibus in. Aliquam
+          sit amet elit vel nisi mollis condimentum quis eget est. Mauris pretium a ante eget feugiat. Vestibulum ante
+          ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin ornare pulvinar odio vitae
+          convallis. Sed sodales aliquam nunc, nec venenatis tellus laoreet in. Aenean lobortis tortor lacus, non
+          tristique massa pulvinar eget.
+      <br/><br/>
+        Nunc fermentum auctor tristique. Phasellus porta dolor leo, et pharetra nisl luctus ac. Vivamus est lacus,
+        feugiat vel dui quis, ornare porta mauris. Integer placerat venenatis tincidunt. Proin iaculis, mauris quis
+        tristique pretium, enim odio rhoncus tortor, et aliquet nunc metus ac neque. Sed et aliquet ligula. Nunc ut
+        lacus malesuada ante accumsan malesuada. Nulla varius sit amet nulla viverra dapibus. Curabitur volutpat ex
+         laoreet, porttitor nisl eget, eleifend neque. Maecenas luctus nisl sit amet sem ultricies lacinia ut at augue.
+         Vestibulum malesuada luctus nulla in mattis. Ut ex diam, varius nec posuere sed, vehicula quis turpis.</p>
+    </div>
+
+    <div class="col-xs-12 col-md-4">
+      <img src="images/about.jpg" class="img-responsive pull-right">
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="col-xs-6"></div>
+      <div class="col-xs-6">
+        <i class="fa fa-facebook-square fa-2x pull-right"></i>
+        <i class="fa fa-envelope-o fa-2x pull-right"></i>
+        <i class="fa fa-linkedin-square fa-2x pull-right"></i>
+      </div>
+    </div>
+  </footer>
+</body>
+
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+</html>

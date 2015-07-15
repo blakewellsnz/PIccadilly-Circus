@@ -17,13 +17,9 @@ if(isset($_POST["type"]) && $_POST["type"]=='add')
     $product_qty    = filter_var($_POST["product_qty"], FILTER_SANITIZE_NUMBER_INT); //product code
     $return_url     = base64_decode($_POST["return_url"]); //return url
     
-    //limit quantity for single product
-    if($product_qty > 10){
-        die('<div align="center">This demo does not allowed more than 10 quantity!<br /><a href="http://sanwebe.com/assets/paypal-shopping-cart-integration/">Back To Products</a>.</div>');
-    }
 
     //MySqli query - get details of item from db using product code
-    $results = $mysqli->query("SELECT product_name,price FROM products WHERE product_code='$product_code' LIMIT 1");
+    $results = $mysqli->query("SELECT product_name,price FROM products WHERE product_code='$product_code' LIMIT 10");
     $obj = $results->fetch_object();
     
     if ($results) { //we have the product info 

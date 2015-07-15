@@ -40,13 +40,17 @@ include_once("config.php");
             <p class="pull-right">
             <?php
             if(isset($_SESSION["products"]))
-            {
-                $subtotal = ($cart_itm["price"]*$cart_itm["qty"]);
-                $total = ($total + $subtotal);
-                echo '<span class="check-out-text"><strong>Total : '.$currency.$total.'</strong> <a href="view_cart.php">View Cart</a></span>';
-                }else{
+            {   
+                $total = 0;
+                foreach ($_SESSION["products"] as $cart_itm)
+                {
+                        $subtotal = ($cart_itm["price"]*$cart_itm["qty"]);
+                        $total = ($total + $subtotal);
+                        }
+                    echo '<span class="check-out-text"><strong>Total : '.$currency.$total.'</strong> <a href="view_cart.php">View Cart</a></span>';
+            }else{
                     echo 'Your cart is empty';
-                }
+                }  
             ?>
             
             </p>
@@ -64,25 +68,29 @@ include_once("config.php");
     if(isset($_SESSION["products"]))
     {
         $total = 0;
-        echo '<form method="post" action="PAYMENT-GATEWAY">';
+        echo '<form method="post" action="cart-update.php">';
         echo '<ul>';
         $cart_items = 0;
         foreach ($_SESSION["products"] as $cart_itm)
         {
            $product_code = $cart_itm["code"];
-           $results = $mysqli->query("SELECT product_name,product_desc, price FROM products WHERE product_code='$product_code' LIMIT 1");
+           $results = $mysqli->query("SELECT product_name,product_img_name,product_desc, price FROM products WHERE product_code='$product_code' LIMIT 1");
            $obj = $results->fetch_object();
            
-            echo '<li class="cart-itm">';
-            echo '<div class="product-info">';
+            echo '<table>';
+            echo '<tr class="row">';
+            echo '<td class="col-xs-6">';
             echo '<h3>'.$obj->product_name.' (Code :'.$product_code.')</h3> ';
             echo '<div class="p-qty">Qty : '.$cart_itm["qty"].'</div>';
             echo '<div>'.$obj->product_desc.'</div>';
             echo '<span class="remove-itm"><a href="cart_update.php?removep='.$cart_itm["code"].'&return_url='.$current_url.'">Remove</a></span>';
             echo '<div class="p-price">'.$currency.$obj->price.'</div>';
-            echo '<div class="product-thumb"><img src="images/'.$obj->product_img_name.'"></div>';
-            echo '</div>';
-            echo '</li>';
+            echo '</td>';
+            echo '<td class="col-xs-6 text-center">';
+            echo '<img class="product-thumb pull-right" src="images/'.$obj->product_img_name.'">';
+            echo '</td>';
+            echo '</tr>';
+            echo '</table>';
             $subtotal = ($cart_itm["price"]*$cart_itm["qty"]);
             $total = ($total + $subtotal);
 
@@ -94,10 +102,11 @@ include_once("config.php");
             
         }
         echo '</ul>';
-        echo '<span class="check-out-txt">';
+        echo '<span class="check-out-txt text-center">';
         echo '<strong>Total : '.$currency.$total.'</strong>  ';
         echo '</span>';
         echo '</form>';
+        echo '<a href="check-out.php"><button class="btn btn-success">Continue to Contact Details</button></a>';
         
     }else{
         echo '<h3 class="text-center">Your Cart is empty <a href="products.php">shop now!</a></h3>';
